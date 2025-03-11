@@ -5,6 +5,10 @@ const user = require("../model/user");
 const register = async (req, res) => {
     try {
         const { name, email, password, role } = req.body;
+        const emailExist = await user.findOne({ email });
+        if (emailExist) {
+            return res.status(400).json({ message: "Email already exists" });
+        }
         const hashedPassword = await bcrypt.hash(password, 10);
         const user1 = new user({ name, email, password: hashedPassword, role });
         await user1.save();
