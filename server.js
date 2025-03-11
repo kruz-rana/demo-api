@@ -1,9 +1,10 @@
 const express = require("express");
 const connectdb = require("./config/db");
 const bodyParser = require("body-parser");
-// const dotenv = require("dotenv");
+const dotenv = require("dotenv");
 const userRoutes = require("./routes/user_route");
 const taskRoutes = require("./routes/task_route");
+dotenv.config();
 
 const PORT = process.env.PORT;
 
